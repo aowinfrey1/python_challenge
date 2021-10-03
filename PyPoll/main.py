@@ -22,6 +22,11 @@ election_data = os.path.join("Resources" , "election_data.csv")
 
 #variables
 total_votes = 0
+candidates = []
+candidate_votes = {}
+
+#index 0 = to voter ID
+#index 2 = to candidates
 
 #read csv file
 with open(election_data) as election_data:
@@ -32,7 +37,26 @@ with open(election_data) as election_data:
 
     for row in csv_reader:
         total_votes += 1
+        if row[2] not in candidates:
+            candidates.append(row[2])
+
+        candidate_votes[row[2]] = 1
+    else:
+        candidate_votes[row[2]] += 1
+
+#x = candidate_votes.count("Khan")
+
+for candidates in candidate_votes:
+    votes = candidate_votes.get(candidates)
+
+    vote_percentage = (float(votes) / float(total_votes)) * 100.00
+    print(vote_percentage)
+
+    
 
 
+#print(f"Total votes = {total_votes} ")
 
-print(total_votes)
+#print(candidate_votes)    
+x = candidates.count("Correy")
+print(x)
